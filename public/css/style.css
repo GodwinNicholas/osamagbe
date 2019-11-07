@@ -1,0 +1,81 @@
+h1,h2,h3 {
+    text-transform: uppercase;
+}
+
+
+.home h1{
+    text-align: center;
+    margin: 2em auto;
+}
+
+.home .table-wrap{
+    max-width: 900px;
+    margin: auto;
+}
+
+.send h1{
+    text-align: center;
+}
+
+.email-form-wrap{
+    max-width: 600px;
+    margin: 2rem auto;
+    font-weight: bold;
+}
+
+.email-form-wrap label{
+    color: #fff;
+}
+
+.email-form-wrap form {
+    background: rgb(43, 49, 58);
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.email-form-wrap input,
+.email-form-wrap button,
+.email-form-wrap textarea,
+.email-form-wrap label,
+.email-form-wrap select{
+    display: block;
+    width: 100%;
+}
+
+.email-form-wrap button{
+    margin: 2rem auto;
+}
+
+.email-form-wrap input,
+.email-form-wrap select{
+    margin-top: 1rem;
+}
+
+.upload > form {
+    display: block
+}
+
+.upload ul{
+    display: flex;
+    margin: auto;
+}
+
+.upload .input {
+    width: 9rem;
+    margin-top: 1rem;
+}
+
+.editor{
+    background: #fff;
+}
+.editor > * {
+    color: #000;
+}
+
+.ql-toolbar.ql-snow{
+    background: #eee;
+}
+.ql-toolbar.ql-snow > *{
+    padding: 0;
+    margin: 0;
+}

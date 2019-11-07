@@ -1,0 +1,29 @@
+<div class="home">
+    <h1>email list</h1>
+
+    <div class="table-wrap">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">email address</th>
+                    <th scope="col">type</th>
+                    <th scope="col">action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% list.forEach(e => {%>
+                <tr>
+                    <td><%= e.address %></td>
+                    <td><%= emailType(e.address) %> </td>
+                    <td>
+                        <form action="/delete" method="post">
+                            <input type="hidden" name="id" value="<%= e._id %>">
+                            <button class="btn btn-danger">delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>

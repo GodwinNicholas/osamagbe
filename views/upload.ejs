@@ -1,0 +1,90 @@
+<div class="upload">
+
+
+    <h1 class="text-center mt-4">upload email</h1>
+    <p class="lead text-center">upload email to your list using one of the following methods:</p>
+
+    <div class="container">
+
+
+        <div class="container">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-textfile-tab" data-toggle="pill" href="#pills-textfile"
+                        role="tab" aria-controls="pills-textfile" aria-selected="true">Text File</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" id="pills-csv-tab" data-toggle="pill" href="#pills-csv" role="tab"
+                        aria-controls="pills-csv" aria-selected="false">CSV</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-pdf-tab" data-toggle="pill" href="#pills-pdf" role="tab"
+                        aria-controls="pills-pdf" aria-selected="false">PDF</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-webpage-tab" data-toggle="pill" href="#pills-webpage" role="tab"
+                        aria-controls="pills-webpage" aria-selected="false">Web Page</a>
+                </li> -->
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-textfile" role="tabpanel"
+                    aria-labelledby="pills-textfile-tab">
+                    <form action="/upload" method="POST" enctype="multipart/form-data">
+                        <% if(msg.length > 0){ %>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong><%= msg %></strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <% } %>
+                        <h3>Upload a text file container emails</h3>
+                        <div class="input group">
+                            <label for="textfile"></label>
+                            <input type="file" name="list" id="textfile">
+                        </div>
+                        <div class="input group">
+                            <button class="btn btn-secondary mt-2">upload</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="pills-csv" role="tabpanel" aria-labelledby="pills-csv-tab">
+                    <form action="">
+                        <h3>Upload a csv file container emails</h3>
+                        <div class="input group">
+                            <label for="textfile"></label>
+                            <input type="file" name="textfile" id="textfile" accept="text">
+                        </div>
+                        <div class="input group">
+                            <button class="btn btn-secondary mt-2">upload</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="pills-pdf" role="tabpanel" aria-labelledby="pills-pdf-tab">
+                    <form action="">
+                        <h3>Upload a pdf file container emails</h3>
+                        <div class="input group">
+                            <label for="textfile"></label>
+                            <input type="file" name="textfile" id="textfile" accept="text">
+                        </div>
+                        <div class="input group">
+                            <button class="btn btn-secondary mt-2">upload</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="pills-webpage" role="tabpanel" aria-labelledby="pills-webpage-tab">
+                    <form action="">
+                        <h3>Past the url of the webpage</h3>
+                        <div class="input group">
+                            <input type="url" name="link" id="link">
+                        </div>
+                        <div class="input group">
+                            <button class="btn btn-secondary mt-2">fetch</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
