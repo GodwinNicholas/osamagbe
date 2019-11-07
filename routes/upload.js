@@ -26,7 +26,8 @@ router.post("/", (req, res) => {
                 // add emails to database
                 fs.readFile(path.join(__dirname, "../public", "uploads", "list.txt"), "utf8", (err, data) => {
                     if (err) console.log(err);
-                    const emailList = data.replace(/\n/g, " ").split(" ");
+                    // const emailList = data.replace(/\n/g, " ").split(" ");
+                    const emailList = data.match(/\S+@\S+\.\S+/gmi);
                     let counter = emailList.length - 1;
                     (function addEmail() {
                         const newEmail = new Email({
