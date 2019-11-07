@@ -11,11 +11,11 @@ router.post("/", (req, res) => {
     Email.find({ user: req.user })
         .then((emailList) => {
             emailList.forEach(e => {
-                sendmail(e.address, req.body.subject, req.body.body);
+                setTimeout(() => {
+                    sendmail(e.address, req.body.subject, req.body.body);
+                }, 500)
             });
-            setTimeout(() => {
-                return res.redirect("/");
-            }, 0)
+            return res.redirect("/");
         })
 });
 
