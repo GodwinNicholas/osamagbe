@@ -8,7 +8,7 @@ router.get("/", ensureAuthenticated, (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    const counter = 0;
+    let counter = 0;
     Email.find({ user: req.user })
         .then((emailList) => {
             emailList.forEach(e => {
