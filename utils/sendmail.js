@@ -24,6 +24,8 @@ function sendmail(receiver, subject, html) {
         console.log('err', err);
         console.log("info", info);
     })
+
+    transporter.close();
 }
 
 module.exports = sendmail;
