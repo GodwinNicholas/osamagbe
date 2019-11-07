@@ -9,4 +9,11 @@ router.post("/", (req, res) => {
         });
 });
 
+router.post("/all", (req, res) => {
+    Email.deleteMany({})
+        .then(() => {
+            res.redirect("/");
+        })
+})
+
 module.exports = router;
