@@ -8,12 +8,20 @@ router.get("/", ensureAuthenticated, (req, res) => {
 });
 
 router.post("/", (req, res) => {
+    const counter = 0;
     Email.find({ user: req.user })
         .then((emailList) => {
             emailList.forEach(e => {
-                setTimeout(() => {
-                    sendmail(e.address, req.body.subject, req.body.body);
-                }, 500)
+                (async function send() {
+                    if (counter < emailList.length) {
+                        await sendmail(e.address, req.body.subject, req.body.body);
+                        counter++;
+                        return send()
+                    }
+                    else {
+                        return res.redirect("/");
+                    }
+                })()
             });
             return res.redirect("/");
         })
