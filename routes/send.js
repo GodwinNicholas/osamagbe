@@ -14,12 +14,10 @@ router.post("/", (req, res) => {
             emailList.forEach(e => {
                 (async function send() {
                     if (counter < emailList.length) {
-                        setTimeout(() => {
-                            await sendmail(e.address, req.body.subject, req.body.body);
-                            counter++;
-                            console.log(counter)
-                            return send()
-                        }, 30000);
+                        await sendmail(e.address, req.body.subject, req.body.body);
+                        counter++;
+                        console.log(counter)
+                        return send()
                     }
                     else {
                         console.log("done")
