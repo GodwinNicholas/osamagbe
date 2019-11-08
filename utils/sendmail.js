@@ -2,8 +2,9 @@ const nodemailer = require("nodemailer");
 const Email = require("../models/Email");
 
 function sendmail(subject, html, list) {
-    let counter = list.length;
-    let email_counter;
+    let counter = list.length - 1;
+    let email_counter = 0;
+    console.log("counter", counter)
     const emails = [
         {
             address: "donaldcris176@gmail.com",
@@ -29,9 +30,10 @@ function sendmail(subject, html, list) {
 
 
     // call initial
-    send(emails[email_counter].address, emails[email_counter].password, counter);
-
+    console.log("stage 2")
+    send(emails[email_counter].address, emails[email_counter].password, counter, email_counter, list);
     function send(address, password, counter, email_counter) {
+        console.log("stage 3")
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             host: 'smtp.gmail.com',
@@ -46,37 +48,45 @@ function sendmail(subject, html, list) {
 
         var message = {
             from: address,
-            to: list[counter],
+            to: list[counter].address,
             subject: subject,
             html: html
         };
 
         transporter.sendMail(message, (err, info) => {
             if (err) {
-                console.log(err);
+                console.log(err.response);
                 counter--;
                 email_counter++;
                 if (counter != 0) {
+                    if (email_counter > 4) {
+                        email_counter = 0;
+                        transporter.close();
+                        return send(emails[email_counter].address, emails[email_counter].password, counter, email_counter, list);
+                    }
                     transporter.close();
-                    return send(emails[email_counter].address, emails[email_counter].password, counter, email_counter);
+                    return send(emails[email_counter].address, emails[email_counter].password, counter, email_counter, list);
                 }
                 console.log("done....")
             }
             else {
-                Email.deleteOne({ address })
+                console.log(list[counter].address)
+                Email.deleteOne({ address: [list[counter].address] })
                     .then(() => {
-                        if (email_counter > 4) {
-                            email_counter = 0;
-                        }
-                        console.log(`message sent ${info}`)
-                        counter--;
-                        email_counter++;
+                        console.log(`message sent`)
                         if (counter != 0) {
+                            counter--;
+                            email_counter++;
+                            console.log(email_counter)
+                            if (email_counter > 4) {
+                                email_counter = 0;
+                                transporter.close();
+                                return send(emails[email_counter].address, emails[email_counter].password, counter, email_counter, list);
+                            }
                             transporter.close();
-                            return send(emails[email_counter].address, emails[email_counter].password, counter, email_counter);
+                            return send(emails[email_counter].address, emails[email_counter].password, counter, email_counter, list);
                         }
                         console.log("done....")
-                        return
                     })
             }
         })

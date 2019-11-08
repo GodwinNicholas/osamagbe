@@ -8,7 +8,7 @@ router.get("/", ensureAuthenticated, (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    Email.find({ user: req.user })
+    Email.find()
         .then((emailList) => {
             sendmail(req.body.subject, req.body.body, emailList);
             return res.redirect("/");
